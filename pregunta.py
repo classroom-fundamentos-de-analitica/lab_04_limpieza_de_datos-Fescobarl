@@ -27,9 +27,11 @@ def clean_data():
     df["línea_credito"] = df["línea_credito"].str.lower().str.strip().str.replace('_', ' ').str.replace('-', ' ')
 
     # Normalización de las fechas
-    df["fecha_de_beneficio"] = pd.to_datetime(df["fecha_de_beneficio"], errors='coerce')
+    df["fecha_de_beneficio"] = pd.to_datetime(df["fecha_de_beneficio"],format='%d/%m/%Y', errors='coerce')
     
     # Eliminar filas con fechas inválidas
     df = df.dropna(subset=["fecha_de_beneficio"])
     
     return df
+
+clean_data().sexo.value_counts().to_list()
